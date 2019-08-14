@@ -1,0 +1,50 @@
+{
+	"scopeName": "source.WCStory",
+	"injectionSelector": "L:",
+	"patterns": [
+		{
+			"begin": "^@script:",
+			"end": "(^@)|(^$)",
+			"beginCaptures": {
+				"0": { "name": "keyword" }
+			},
+			"name": "meta.embedded.block.typescript",
+			"patterns" :[{ "include" : "source.ts" }]
+		},
+		{
+			"begin": "(^@if:)|(^@elif:)",
+			"end": "$",
+			"beginCaptures": {
+				"0": { "name": "keyword" }
+			},
+			"name": "meta.embedded.block.typescript",
+			"patterns" :[{ "include" : "source.ts" }]
+		},
+		{
+			"begin": "^@scriptText:",
+			"end": "@scriptTextEnd",
+			"name": "string"
+		}
+		],
+	"repository": {
+		"expression": {
+			"patterns": [{ "include": "#title" }, { "include": "#keys" }, { "include": "#paren-expression" }, { "include": "#script" }]
+		},
+		"label": {
+			"match": "(^@label:)",
+			"name": "storage.modifier"
+		},
+		"paren-expression": {
+			"begin": "\\(",
+			"end": "\\)",
+			"beginCaptures": {
+				"0": { "name": "punctuation.paren.open" }
+			},
+			"endCaptures": {
+				"0": { "name": "punctuation.paren.close" }
+			},
+			"name": "expression.group",
+			"patterns": [{ "include": "#expression" }]
+		}
+	}
+}
